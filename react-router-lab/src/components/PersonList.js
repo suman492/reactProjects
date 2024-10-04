@@ -1,19 +1,59 @@
-import React from 'react';
+import React,{ useEffect,useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+import Notification from './Notification';
 import '../styles/PersonList.css'
 
-const PersonList = () => {
-    const output = axios.get("https://5000-suman492-reactprojects-aml9r2kzmrb.ws-us116.gitpod.io/persons")
-
-    console.log(output);
-
-    const API_URL= process.env.REACT_APP_API_URL
+const API_URL= process.env.REACT_APP_API_URL
     console.log(API_URL)
+
+
+const PersonList = () => {
+    const [people,setPeople] = useState([]);
+    const [notification,setNotification] = useState('');
+
+    useEffect = (() => {
+        const fetchPeople = async () => {
+            try{
+                const response = await axios.get(API_URL);
+                setPeople(response.data);
+            }catch(error){
+                console.error('Error fetching peole:', error)
+            }
+        };
+        fetchPeople();
+    },[]);
+    
     return (
         <div className='person-list'>
-            <h2>personlist</h2>
+            <h1>personlist</h1>
+            <Link to="/add" className='btn btn-add add-person-button'>Add Peron</Link>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {people.map(person => (
+                        <tr key={person.id}>
+                            <td>
+                                <Link to={`/person/${person.id}`} className="person-name">
+                                {person.name}
+                                </Link>
+                            </td>
+                            <td>{person.age}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            {notification && (
+                <notification message={notification} onClose = {() => setNotification('')} />
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default PersonList
