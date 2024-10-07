@@ -13,7 +13,7 @@ const PersonList = () => {
     const [people,setPeople] = useState([]);
     const [notification,setNotification] = useState('');
 
-    useEffect = (() => {
+    useEffect(() => {
         const fetchPeople = async () => {
             try{
                 const response = await axios.get(API_URL);
