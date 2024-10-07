@@ -3,7 +3,7 @@ import '../styles/PersonEdit.css'
 
 const PersonEdit = () => {
 
-    const API_URL= process.env.REACT_APP_API_URL
+    // const API_URL= process.env.REACT_APP_API_URL
     return (
         <div>
             <h2>edit a person</h2>

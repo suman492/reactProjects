@@ -11,7 +11,7 @@ const API_URL= process.env.REACT_APP_API_URL
 
 const PersonList = () => {
     const [people,setPeople] = useState([]);
-    const [Notification,setNotification] = useState('');
+    const [notification,setNotification] = useState('');
 
     useEffect = (() => {
         const fetchPeople = async () => {
@@ -49,8 +49,8 @@ const PersonList = () => {
                     ))}
                 </tbody>
             </table>
-            {Notification && (
-                <notification message={Notification} onClose = {() => setNotification('')} />
+            {notification && (
+                <Notification message={notification} onClose = {() => setNotification('')} />
             )}
         </div>
     );
