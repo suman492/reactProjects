@@ -1,13 +1,14 @@
 import React from 'react';
 
-const Notification = () => {
+const Notification = ({ message, onClose }) => {
+  const notificationClass = `notification ${message.type}`;
 
-    // const API_URL= process.env.REACT_APP_API_URL
-    return (
-        <div>
-            <h2>notification a person</h2>
-        </div>
-    )
-}
+  return (
+    <div className={notificationClass}>
+      {message.text}
+      <button onClick={onClose} className="btn btn-cancel">Close</button>
+    </div>
+  );
+};
 
-export default Notification
+export default Notification;
