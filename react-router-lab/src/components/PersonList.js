@@ -28,7 +28,7 @@ const PersonList = () => {
     return (
         <div className='person-list'>
             <h1>personlist</h1>
-            <Link to="/add" className='btn btn-add add-person-button'>Add Peron</Link>
+            <Link to="/add" className='btn btn-add add-person-button'>Add Person</Link>
             <table>
                 <thead>
                     <tr>
